@@ -1,0 +1,21 @@
+html {
+	font-size: 0px;
+}
+
+.game-container {
+	width: 300px;
+	height: 300px;
+	margin-left:auto;
+	margin-right: auto;
+	border: 1px solid #eee;
+}
+
+.click-box {
+	cursor: pointer;
+	box-sizing: border-box;
+	background: url("empty.png") no-repeat center;
+	width: 33.33%;
+	height: 33.33%;
+	display: inline-block;
+	border: 1px solid #eee;
+}
