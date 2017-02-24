@@ -5,12 +5,15 @@ var controller = {
 
 $(function () {
 	initGame();
+	// click on board case
 	$("main").on("click", ".click-box", function () {
 		clickCase($(this).parent().data("container"), $(this).data("box"));
 	});
+	// click on reset button
 	$("main").on("click", ".restart", function () {
 		resetGame($(this).parent().data("container"));
 	});
+	// click on submit numbr of boards
 	$("#forn-nb-games").submit(function(e) {
  		e.preventDefault();
  		controller.numberGames = $("#nb-games").val();
@@ -22,6 +25,7 @@ $(function () {
 });
 
 function initGame () {
+	// create x number of games in the controller and in the UI
 	for (var i = 0; i < controller.numberGames; i++) {
 		var container = "<div class=\"game-container\" data-container=\"" + i + "\"></div>";
 		$("main").append(container);
@@ -41,6 +45,7 @@ function initGame () {
 
 function clickCase (container, box) {
 	var currentgame = controller.games[container];
+	// check if case has been played and if the game is not over on this board
 	if (currentgame.gameArray[box] === 0 && currentgame.winner === "none") {
 		currentgame.played++;
 		$(".game-container[data-container=" + container + "]>.click-box[data-box=" + box + "]").css("background-image", "url(" + currentgame.turn + ".png)");
@@ -57,7 +62,7 @@ function clickCase (container, box) {
 
 function checkWin (container) {
 	var a = controller.games[container].gameArray; // select corresponding game array
-	var winningCombinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
+	var winningCombinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]; // all the winning combinations
 	$.each(winningCombinations, function (i) {
 		if (a[winningCombinations[i][0]] + a[winningCombinations[i][1]] + a[winningCombinations[i][2]] === 3) {
 			setWinner(container, "circle");
@@ -66,7 +71,7 @@ function checkWin (container) {
 			setWinner(container, "cross");
 			return false;
 		} else if (controller.games[container].played >=9 && controller.games[container].winner === "none") {
-			setWinner(container, "empty");
+			setWinner(container, "nobody");
 			return false;
 		}
 	});
@@ -74,29 +79,28 @@ function checkWin (container) {
 
 function setWinner (container, gameWinner) {
 	controller.games[container].winner = gameWinner;
-	var wintext = "";
+	var	wintext = "<img src=\"" + gameWinner + ".png\" width=\"10px\" style=\"vertical-align:middle\">";
+	var cont = $(".game-container[data-container=" + container + "]");
 	if (gameWinner === "cross") {
-			$(".game-container[data-container=" + container + "]").css("background-color", "#E0E0F0");
-			wintext = "<img src=\"" + gameWinner + ".png\" width=\"10px\" style=\"vertical-align:middle\">";
+			cont.css("background-color", "#E0E0F0");
 	} else if (gameWinner === "circle") {
-			$(".game-container[data-container=" + container + "]").css("background-color", "#F2D0D0");
-			wintext = "<img src=\"" + gameWinner + ".png\" width=\"10px\" style=\"vertical-align:middle\">";
+			cont.css("background-color", "#F2D0D0");
 	} else {
-			$(".game-container[data-container=" + container + "]").css("background-color", "#E5E5E5");
+			cont.css("background-color", "#E5E5E5");
 			wintext = "Nobody";
 	}
-	$(".game-container[data-container=" + container + "]").append("<div class=\"result\">" + wintext + " won the game</div>");
-	$(".game-container[data-container=" + container + "]").append("<div class=\"restart\">Reset</div>");
+	$(".game-container[data-container=" + container + "]").append("<div class=\"result\">" + wintext + " won the game</div><div class=\"restart\">Reset</div>");
 }
 
 function resetGame (container) {
 	var game = controller.games[container];
+	var cont = ".game-container[data-container=" + container + "]";
+	$(cont).css("background-color", "#FFF");
+	$(cont + ">.restart").remove();
+	$(cont + ">.result").remove();
 	for (var i = 0; i < 9; i++) {
 		game.gameArray[i] = 0;
-		$(".game-container[data-container=" + container + "]").css("background-color", "#FFF");
-		$(".game-container[data-container=" + container + "]>.restart").remove();
-		$(".game-container[data-container=" + container + "]>.result").remove();
-		$(".game-container[data-container=" + container + "]>.click-box[data-box=" + i + "]").css("background-image", "url(\"empty.png\")");
+		$(cont + ">.click-box[data-box=" + i + "]").css("background-image", "url(\"empty.png\")");
 		game.winner = "none";
 		game.turn = "circle";
 		game.played = 0;
