@@ -101,11 +101,11 @@ function resetGame (container) {
 	$(cont).css("background-color", "#FFF");
 	$(cont + ">.restart").remove();
 	$(cont + ">.result").remove();
+	game.gameArray = game.gameArray.map(x => 0);
 	for (var i = 0; i < 9; i++) {
-		game.gameArray[i] = 0;
 		$(cont + ">.click-box[data-box=" + i + "]").css("background-image", "url(\"empty.png\")");
-		game.winner = "none";
-		game.turn = "circle";
-		game.played = 0;
 	}
+	game.winner = "none";
+	game.turn = "circle";
+	game.played = 0;
 }
