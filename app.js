@@ -13,9 +13,12 @@ $(function () {
 	$("main").on("click", ".restart", function () {
 		resetGame($(this).parent().data("container"));
 	});
-	// click on submit numbr of boards
+	// click on submit number of boards
 	$("#forn-nb-games").submit(function(e) {
  		e.preventDefault();
+ 		if ($("#nb-games").val() > 100) {
+ 			$("#nb-games").val(100)
+ 		}
  		controller.numberGames = $("#nb-games").val();
  		$("#nb-games").val("");
  		controller.games = [];
