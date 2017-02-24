@@ -18,15 +18,19 @@ h1 {
 
 #nb-games {
 	border: 1px solid #bbb;
-	width: 40px;
+	width: 50px;
 	text-align: center;
+    vertical-align: bottom;
+    height: 25px;
 }
 
 #submit {
 	border: 1px solid #bbb;
 	font-size: 10px;
 	width: 40px;
-	background-color: #eee;
+	background-color: #E3E6FC;
+    height: 28px;
+	cursor: pointer;
 }
 
 .game-container {

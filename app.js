@@ -14,6 +14,7 @@ $(function () {
 	$("#forn-nb-games").submit(function(e) {
  		e.preventDefault();
  		controller.numberGames = $("#nb-games").val();
+ 		$("#nb-games").val("");
  		controller.games = [];
  		$(".game-container").remove();
  		initGame();
