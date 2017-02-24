@@ -1,14 +1,40 @@
 html {
 	font-size: 0px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+	text-align: center;
+}
+
+main {
+	font-size: 12px;
+}
+
+h1 {
+	font-size: 25px;
+	color: #6662B8;
+}
+
+#nb-games {
+	border: 1px solid #bbb;
+	width: 40px;
+	text-align: center;
+}
+
+#submit {
+	border: 1px solid #bbb;
+	font-size: 10px;
+	width: 40px;
+	background-color: #eee;
 }
 
 .game-container {
-	width: 200px;
-	height: 200px;
 	margin-left:auto;
 	margin-right: auto;
-	border: 1px solid #eee;
 	margin-top: 30px;
+	width: 150px;
+	font-size: 0px;
 }
 
 .click-box {
@@ -17,8 +43,24 @@ html {
 	background: no-repeat center;
 	background-image: url("empty.png");
 	background-size: 100% 100%;
-	width: 33.33%;
-	height: 33.33%;
+	width: 50px;
+	height: 50px;
 	display: inline-block;
-	border: 1px solid #eee;
+	border: 1px solid #999;
+}
+
+.result {
+	background-color: #fff;
+	font-size: 12px;
+	text-align: center;
+	padding: 5px;
+}
+
+.restart {
+	background-color: #C5DE9B;
+	border: 1px solid #89A854;
+	padding: 5px;
+	font-size: 12px;
+	text-align: center;
+	cursor: pointer;
 }
