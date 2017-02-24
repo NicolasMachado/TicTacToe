@@ -3,17 +3,20 @@ html {
 }
 
 .game-container {
-	width: 300px;
-	height: 300px;
+	width: 200px;
+	height: 200px;
 	margin-left:auto;
 	margin-right: auto;
 	border: 1px solid #eee;
+	margin-top: 30px;
 }
 
 .click-box {
 	cursor: pointer;
 	box-sizing: border-box;
-	background: url("empty.png") no-repeat center;
+	background: no-repeat center;
+	background-image: url("empty.png");
+	background-size: 100% 100%;
 	width: 33.33%;
 	height: 33.33%;
 	display: inline-block;
